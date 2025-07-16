@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Thanushree841/pipeline.git'
+                git branch: 'main', url: 'https://github.com/varaprasad070693/sonarqube.git'
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+                withCredentials([string(credentialsId: '3c0e6ed1-daf1-49fe-9425-e7f182d6c6af', variable: 'SONAR_TOKEN')]) {
                     withSonarQubeEnv('SonarQube') {
                         script {
                             // Get Sonar Scanner path
@@ -31,7 +31,7 @@ pipeline {
                               ${scannerHome}/bin/sonar-scanner \
                                 -Dsonar.projectKey=myproject \
                                 -Dsonar.sources=. \
-                                -Dsonar.host.url=http://13.201.65.236:9000 \
+                                -Dsonar.host.url=http://13.202.137.9:9000 \
                                 -Dsonar.login=$SONAR_TOKEN
                             """
                         }
